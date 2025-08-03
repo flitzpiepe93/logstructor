@@ -12,12 +12,14 @@ default-groups = "all"
 [dependency-groups]
 docs = [
     "myst-parser>=4.0.1",
-    "pytest>=8.4.1",
-    "pytest-cov>=6.2.1",
     "sphinx-book-theme>=1.1.4",
     "sphinx-copybutton>=0.5.2",
 ]
 linting = ["mypy>=1.17.1", "ruff>=0.12.7"]
+test = [
+    "pytest>=8.4.1",
+    "pytest-cov>=6.2.1",
+]
 
 [build-system]
 requires = ["hatchling"]

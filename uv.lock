@@ -247,8 +247,6 @@ source = { editable = "." }
 [package.dev-dependencies]
 docs = [
     { name = "myst-parser" },
-    { name = "pytest" },
-    { name = "pytest-cov" },
     { name = "sphinx-book-theme" },
     { name = "sphinx-copybutton" },
 ]
@@ -256,20 +254,26 @@ linting = [
     { name = "mypy" },
     { name = "ruff" },
 ]
+test = [
+    { name = "pytest" },
+    { name = "pytest-cov" },
+]
 
 [package.metadata]
 
 [package.metadata.requires-dev]
 docs = [
     { name = "myst-parser", specifier = ">=4.0.1" },
-    { name = "pytest", specifier = ">=8.4.1" },
-    { name = "pytest-cov", specifier = ">=6.2.1" },
     { name = "sphinx-book-theme", specifier = ">=1.1.4" },
     { name = "sphinx-copybutton", specifier = ">=0.5.2" },
 ]
 linting = [
     { name = "mypy", specifier = ">=1.17.1" },
     { name = "ruff", specifier = ">=0.12.7" },
+]
+test = [
+    { name = "pytest", specifier = ">=8.4.1" },
+    { name = "pytest-cov", specifier = ">=6.2.1" },
 ]
 
 [[package]]
