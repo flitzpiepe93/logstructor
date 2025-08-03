@@ -63,7 +63,6 @@ jobs:
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          slug: flitzpiepe93/logstructor
 
   release:
     name: "Publish Package"
