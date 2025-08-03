@@ -66,8 +66,8 @@ attempt:>2
 user_id:"alice" AND level:"ERROR" AND timestamp:[now-1h TO now]
 ```
 
-**Before:** Grep through gigabytes of text files 😵  
-**After:** Instant search and filtering 🚀
+**Before:** Grep through gigabytes of text files
+**After:** Instant search and filtering
 
 ## Why Developers Love It
 
@@ -162,8 +162,4 @@ logger = logstructor.getLogger(__name__)
 logger.info("Hello structured world", excited=True)
 ```
 
-That's it. Your logs just got 10x more useful. 📈
-
----
-
-**🚀 Stop fighting your logs. Start using them.**
+That's it. Your logs just got 10x more useful.
