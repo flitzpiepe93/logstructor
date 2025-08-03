@@ -133,19 +133,19 @@ logger.error("Connection failed", host="db.example.com", timeout=30)
 
 **Choose LogStructor when:**
 
-- ✅ You want structured logging **today** with minimal effort
-- ✅ You have existing codebases with standard logging
-- ✅ You need zero dependencies (security/compliance)
-- ✅ Your team wants to avoid learning new APIs
-- ✅ You need simple request context tracking
+- You want structured logging **today** with minimal effort
+- You have existing codebases with standard logging
+- You need zero dependencies (security/compliance)
+- Your team wants to avoid learning new APIs
+- You need simple request context tracking
 
 **Choose structlog when:**
 
-- 🔧 You're building complex logging pipelines
-- 🔧 You need advanced processors and transformations
-- 🔧 You're starting a greenfield project
-- 🔧 You want maximum flexibility and customization
-- 🔧 You need advanced contextvars integration
+- You're building complex logging pipelines
+- You need advanced processors and transformations
+- You're starting a greenfield project
+- You want maximum flexibility and customization
+- You need advanced contextvars integration
 
 **Migration path:** Many teams start with LogStructor for quick wins, then migrate to structlog when they need advanced features. LogStructor's JSON output is compatible with most log aggregators that also consume structlog output.
 
