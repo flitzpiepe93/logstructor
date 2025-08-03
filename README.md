@@ -66,12 +66,12 @@ attempt:>2
 user_id:"alice" AND level:"ERROR" AND timestamp:[now-1h TO now]
 ```
 
-**Before:** Grep through gigabytes of text files
+**Before:** Grep through gigabytes of text files<br>
 **After:** Instant search and filtering
 
 ## Get Started
 
-Getting started with logstructor is as simple as installing the package and using its drop‑in replacement for the standard Python logger.
+Getting started with ``LogStructor`` is as simple as installing the package and using its drop‑in replacement for the standard Python logger.
 
 ```bash
 pip install logstructor
