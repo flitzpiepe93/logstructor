@@ -1,0 +1,108 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+env:
+  UV_LINK_MODE: "copy"
+  UV_FROZEN: "1"
+
+permissions:
+  contents: write
+
+jobs:
+  linting:
+    name: "Code Linting"
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/astral-sh/uv:0.6-python3.11-bookworm-slim
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install lint dependencies
+        run: uv sync --group linting
+
+      - name: Check code style with Ruff
+        run: uv run ruff check .
+
+      - name: Check code formatting with Ruff
+        run: uv run ruff format --check .
+
+      - name: Check type hints with mypy
+        run: uv run mypy .
+
+  tests:
+    name: "Run Tests"
+    needs: linting
+
+    runs-on: ubuntu-latest
+    container:
+      image: jupyter/pyspark-notebook
+      options: --user root
+
+    steps:
+      - name: Install git (needed for checkout)
+        run: |
+          apt-get update && apt-get install -y git
+
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        run: pip install uv
+
+      - name: Install test dependencies
+        run: uv sync --group test
+
+      - name: Run unit tests
+        run: uv run pytest --cov -v --cov-report=term --cov-report=xml
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          slug: sparkdq-community/sparkdq
+
+  release:
+    name: "Publish Package"
+    if: github.ref == 'refs/heads/main'
+    needs: tests
+
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/astral-sh/uv:0.6-python3.11-bookworm
+
+    permissions:
+      id-token: write
+      contents: write
+
+    steps:
+      - name: Setup | Checkout Repository on Release Branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+
+      - name: Action | Semantic Version Release
+        id: release
+        uses: python-semantic-release/python-semantic-release@v9.21.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          git_committer_name: "github-actions"
+          git_committer_email: "actions@users.noreply.github.com"
+
+      - name: Publish | Upload to GitHub Release Assets
+        uses: python-semantic-release/publish-action@v9.21.0
+        if: steps.release.outputs.released == 'true'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ steps.release.outputs.tag }}
+
+      - name: Publish | Upload package to PyPI
+        if: steps.release.outputs.released == 'true'
+        run: |
+          export UV_PUBLISH_TOKEN=${{ secrets.UV_PUBLISH_TOKEN }}
+          uv build
+          uv publish
