@@ -126,7 +126,7 @@ pip install logstructor
 ```python
 import logstructor
 
-logger = logstructor.get_logger(__name__)
+logger = logstructor.getLogger(__name__)
 logger.info("Hello structured world", excited=True)
 ```
 
