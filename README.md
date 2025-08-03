@@ -1,2 +1,2 @@
-# logstructor
-Logstructor – Bringing structure to your logs with simple, Pythonic structured logging
+# structlogger
+Cloud-native structured logging for Python: JSON logs, context support, AWS-ready, zero dependencies.

@@ -1,0 +1,55 @@
+[project]
+name = "logstructor"
+version = "0.1.0"
+description = "Bringing structure to your logs with simple, Pythonic structured logging"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[tool.uv]
+default-groups = "all"
+
+[dependency-groups]
+docs = [
+    "myst-parser>=4.0.1",
+    "pytest>=8.4.1",
+    "pytest-cov>=6.2.1",
+    "sphinx-book-theme>=1.1.4",
+    "sphinx-copybutton>=0.5.2",
+]
+linting = ["mypy>=1.17.1", "ruff>=0.12.7"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.mypy]
+python_version = "3.11"
+exclude = ["docs", "tests", "examples"]
+strict = false
+show_error_codes = true
+
+[tool.ruff]
+exclude = [
+    ".mypy_cache",
+    ".pytest_cache",
+    ".ruff_cache",
+    ".venv",
+    "docs",
+    "examples",
+]
+line-length = 110
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W"]
+extend-ignore = [
+    "N812",
+    "N803",
+] # N812: lowercase imported as non-lowercase, N803: argument name should be lowercase
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.coverage.run]
+source = ["logstructor"]
