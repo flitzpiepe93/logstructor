@@ -69,6 +69,21 @@ user_id:"alice" AND level:"ERROR" AND timestamp:[now-1h TO now]
 **Before:** Grep through gigabytes of text files
 **After:** Instant search and filtering
 
+## Get Started
+
+```bash
+pip install logstructor
+```
+
+```python
+import logstructor
+
+logger = logstructor.getLogger(__name__)
+logger.info("Hello structured world", excited=True)
+```
+
+That's it. Your logs just got 10x more useful.
+
 ## Why Developers Love It
 
 ### 1. Works in 30 seconds
@@ -148,18 +163,3 @@ logger.error("Connection failed", host="db.example.com", timeout=30)
 - You need advanced contextvars integration
 
 **Migration path:** Many teams start with LogStructor for quick wins, then migrate to structlog when they need advanced features. LogStructor's JSON output is compatible with most log aggregators that also consume structlog output.
-
-## Get Started
-
-```bash
-pip install logstructor
-```
-
-```python
-import logstructor
-
-logger = logstructor.getLogger(__name__)
-logger.info("Hello structured world", excited=True)
-```
-
-That's it. Your logs just got 10x more useful.
