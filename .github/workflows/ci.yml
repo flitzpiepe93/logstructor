@@ -57,7 +57,7 @@ jobs:
         run: uv sync --group test
 
       - name: Run unit tests
-        run: uv run pytest --cov -v --cov-report=term --cov-report=xml
+        run: uv run pytest --cov --junitxml=junit.xml -o junit_family=legacy
 
       - name: Upload test results to Codecov
         if: ${{ !cancelled() }}
