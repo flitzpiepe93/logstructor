@@ -69,9 +69,9 @@ user_id:"alice" AND level:"ERROR" AND timestamp:[now-1h TO now]
 **Before:** Grep through gigabytes of text files 😵  
 **After:** Instant search and filtering 🚀
 
-## 💝 Why Developers Love It
+## Why Developers Love It
 
-### ⚡ 1. Works in 30 seconds
+### 1. Works in 30 seconds
 
 ```python
 import logstructor
@@ -80,7 +80,7 @@ logger = logstructor.getLogger(__name__)
 # Done. You're logging structured data.
 ```
 
-### 🧵 2. Context that actually works
+### 2. Context that actually works
 
 ```python
 # Set once per request
@@ -96,7 +96,7 @@ logger.info("Request completed")
 logstructor.clear_context()
 ```
 
-### 🔄 3. Drop-in replacement
+### 3. Drop-in replacement
 
 ```python
 # Your existing code works unchanged
@@ -108,7 +108,7 @@ logger.info("Server started", port=8080, workers=4)
 logger.error("Connection failed", host="db.example.com", timeout=30)
 ```
 
-## 🏭 Production Ready
+## Production Ready
 
 | Feature                  | Benefit                                             |
 | ------------------------ | --------------------------------------------------- |
@@ -117,7 +117,7 @@ logger.error("Connection failed", host="db.example.com", timeout=30)
 | ⚡ **High performance**  | Minimal overhead over standard logging              |
 | � **Battle-tested**      | Running in production handling millions of requests |
 
-## 🚀 Get Started
+## Get Started
 
 ```bash
 pip install logstructor
@@ -134,4 +134,4 @@ That's it. Your logs just got 10x more useful. 📈
 
 ---
 
-**🎯 Stop fighting your logs. Start using them.**
+**🚀 Stop fighting your logs. Start using them.**
