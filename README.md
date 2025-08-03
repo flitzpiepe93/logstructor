@@ -71,9 +71,13 @@ user_id:"alice" AND level:"ERROR" AND timestamp:[now-1h TO now]
 
 ## Get Started
 
+Getting started with logstructor is as simple as installing the package and using its drop‑in replacement for the standard Python logger.
+
 ```bash
 pip install logstructor
 ```
+
+With just a few lines of code, you can start producing structured, machine‑readable logs without changing your existing logging workflow:
 
 ```python
 import logstructor
@@ -82,7 +86,7 @@ logger = logstructor.getLogger(__name__)
 logger.info("Hello structured world", excited=True)
 ```
 
-That's it. Your logs just got 10x more useful.
+And that’s it — your logs are now automatically enriched with context and structured fields, making them up to 10× more useful for debugging, analysis, and monitoring.
 
 ## Why Developers Love It
 
