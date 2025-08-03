@@ -115,7 +115,39 @@ logger.error("Connection failed", host="db.example.com", timeout=30)
 | 🔒 **Thread-safe**       | Works perfectly in multi-threaded web apps          |
 | 📦 **Zero dependencies** | No supply chain attacks, no version conflicts       |
 | ⚡ **High performance**  | Minimal overhead over standard logging              |
-| � **Battle-tested**      | Running in production handling millions of requests |
+| 🛡️ **Battle-tested**     | Running in production handling millions of requests |
+
+## Why Not structlog?
+
+[structlog](https://www.structlog.org/) is fantastic for complex logging pipelines, but it requires learning a completely new API and philosophy. LogStructor takes a different approach:
+
+| Aspect               | LogStructor                      | structlog                            |
+| -------------------- | -------------------------------- | ------------------------------------ |
+| **Learning curve**   | Zero - uses standard logging API | Steep - new concepts and API         |
+| **Migration effort** | Drop-in replacement              | Rewrite all logging calls            |
+| **Dependencies**     | Zero                             | Multiple (including optional ones)   |
+| **Complexity**       | Minimal - just structured fields | High - processors, contextvars, etc. |
+| **Use case**         | 80% of structured logging needs  | Complex logging architectures        |
+
+### When to choose what:
+
+**Choose LogStructor when:**
+
+- ✅ You want structured logging **today** with minimal effort
+- ✅ You have existing codebases with standard logging
+- ✅ You need zero dependencies (security/compliance)
+- ✅ Your team wants to avoid learning new APIs
+- ✅ You need simple request context tracking
+
+**Choose structlog when:**
+
+- 🔧 You're building complex logging pipelines
+- 🔧 You need advanced processors and transformations
+- 🔧 You're starting a greenfield project
+- 🔧 You want maximum flexibility and customization
+- 🔧 You need advanced contextvars integration
+
+**Migration path:** Many teams start with LogStructor for quick wins, then migrate to structlog when they need advanced features. LogStructor's JSON output is compatible with most log aggregators that also consume structlog output.
 
 ## Get Started
 
