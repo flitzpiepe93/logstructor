@@ -1,9 +1,10 @@
 """
 Tests for structlogger.context module.
 
-Tests thread-local context management functionality.
+Tests context management functionality using contextvars.
 """
 
+import asyncio
 import threading
 import time
 from concurrent.futures import ThreadPoolExecutor
@@ -89,8 +90,8 @@ def test_empty_context_initially():
     assert isinstance(context, dict)
 
 
-def test_thread_local_isolation():
-    """Test that context is isolated between threads."""
+def test_context_isolation_between_threads():
+    """Test that context is isolated between threads with contextvars."""
     results = {}
 
     def thread_function(thread_id):
@@ -185,3 +186,64 @@ def test_context_with_empty_values():
     assert context["false_val"] is False
     assert context["empty_list"] == []
     assert context["empty_dict"] == {}
+
+
+@pytest.mark.asyncio
+async def test_async_context_isolation():
+    """Test that context is properly isolated in async functions."""
+    results = {}
+
+    async def async_function(task_id):
+        # Each async task sets its own context
+        bind_context(task_id=task_id, data=f"task-{task_id}")
+
+        # Simulate async work
+        await asyncio.sleep(0.1)
+
+        # Context should be preserved across await
+        results[task_id] = get_context()
+
+    # Run multiple async tasks concurrently
+    tasks = [async_function(i) for i in range(3)]
+    await asyncio.gather(*tasks)
+
+    # Verify each task had its own context
+    assert len(results) == 3
+    for i in range(3):
+        assert results[i]["task_id"] == i
+        assert results[i]["data"] == f"task-{i}"
+
+
+@pytest.mark.asyncio
+async def test_async_context_persistence():
+    """Test that context persists across multiple await calls."""
+    bind_context(request_id="req-123", user_id=456)
+
+    async def check_context():
+        await asyncio.sleep(0.01)
+        return get_context()
+
+    # Context should persist across multiple async calls
+    context1 = await check_context()
+    context2 = await check_context()
+
+    assert context1["request_id"] == "req-123"
+    assert context1["user_id"] == 456
+    assert context2 == context1
+
+
+@pytest.mark.asyncio
+async def test_async_context_updates():
+    """Test updating context in async functions."""
+    bind_context(request_id="req-123")
+
+    async def update_user_context():
+        await asyncio.sleep(0.01)
+        update_context(user_id=456, authenticated=True)
+
+    await update_user_context()
+
+    context = get_context()
+    assert context["request_id"] == "req-123"
+    assert context["user_id"] == 456
+    assert context["authenticated"] is True
