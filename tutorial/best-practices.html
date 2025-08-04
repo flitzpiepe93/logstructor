@@ -1,0 +1,1193 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" data-theme="dark">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Best Practices &#8212; LogStructor Documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=c0dadd6b" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorial/best-practices';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Context Management" href="context-management.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">LogStructor Documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic-usage.html">Basic Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="json-formatting.html">JSON Formatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="context-management.html">Context Management</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Best Practices</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/flitzpiepe93/logstructor" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/tutorial/best-practices.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Best Practices</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#field-naming-conventions">Field Naming Conventions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-consistent-field-names">Use Consistent Field Names</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-field-names">Standard Field Names</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#units-in-field-names">Units in Field Names</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#structured-logging-patterns">Structured Logging Patterns</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#event-based-logging">Event-Based Logging</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#state-transitions">State Transitions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-monitoring">Performance Monitoring</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-handling-patterns">Error Handling Patterns</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#structured-error-logging">Structured Error Logging</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#error-classification">Error Classification</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#context-management-best-practices">Context Management Best Practices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#web-application-context">Web Application Context</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#background-task-context">Background Task Context</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#async-context-management">Async Context Management</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-optimization">Performance Optimization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lazy-evaluation">Lazy Evaluation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#efficient-data-extraction">Efficient Data Extraction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#batch-context-updates">Batch Context Updates</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#production-deployment">Production Deployment</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#log-level-configuration">Log Level Configuration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sensitive-data-handling">Sensitive Data Handling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-sanitization">Data Sanitization</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monitoring-and-alerting">Monitoring and Alerting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#health-check-logging">Health Check Logging</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#business-metrics">Business Metrics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alert-worthy-events">Alert-Worthy Events</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-structured-logs">Testing Structured Logs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#log-testing-utilities">Log Testing Utilities</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integration-testing">Integration Testing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-anti-patterns">Common Anti-Patterns</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#avoid-these-mistakes">Avoid These Mistakes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#better-alternatives">Better Alternatives</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="best-practices">
+<h1>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading">#</a></h1>
+<p>This guide covers proven patterns and techniques for using LogStructor effectively in production environments.</p>
+<section id="field-naming-conventions">
+<h2>Field Naming Conventions<a class="headerlink" href="#field-naming-conventions" title="Link to this heading">#</a></h2>
+<section id="use-consistent-field-names">
+<h3>Use Consistent Field Names<a class="headerlink" href="#use-consistent-field-names" title="Link to this heading">#</a></h3>
+<p>Establish naming conventions across your application:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Good: Consistent snake_case</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;User action&quot;</span><span class="p">,</span>
+           <span class="n">user_id</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span>
+           <span class="n">event_type</span><span class="o">=</span><span class="s2">&quot;login&quot;</span><span class="p">,</span>
+           <span class="n">ip_address</span><span class="o">=</span><span class="s2">&quot;192.168.1.100&quot;</span><span class="p">)</span>
+
+<span class="c1"># Avoid: Mixed naming styles</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;User action&quot;</span><span class="p">,</span>
+           <span class="n">userId</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span>           <span class="c1"># camelCase</span>
+           <span class="n">event_type</span><span class="o">=</span><span class="s2">&quot;login&quot;</span><span class="p">,</span>   <span class="c1"># snake_case</span>
+           <span class="n">IPAddress</span><span class="o">=</span><span class="s2">&quot;192.168.1.100&quot;</span><span class="p">)</span>  <span class="c1"># PascalCase</span>
+</pre></div>
+</div>
+</section>
+<section id="standard-field-names">
+<h3>Standard Field Names<a class="headerlink" href="#standard-field-names" title="Link to this heading">#</a></h3>
+<p>Use these common field names consistently:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># User identification</span>
+<span class="n">user_id</span><span class="o">=</span><span class="mi">123</span>
+<span class="n">username</span><span class="o">=</span><span class="s2">&quot;alice&quot;</span>
+<span class="n">user_email</span><span class="o">=</span><span class="s2">&quot;alice@example.com&quot;</span>
+<span class="n">user_role</span><span class="o">=</span><span class="s2">&quot;admin&quot;</span>
+
+<span class="c1"># Request tracking</span>
+<span class="n">request_id</span><span class="o">=</span><span class="s2">&quot;req-abc123&quot;</span>
+<span class="n">session_id</span><span class="o">=</span><span class="s2">&quot;sess-xyz789&quot;</span>
+<span class="n">correlation_id</span><span class="o">=</span><span class="s2">&quot;corr-456def&quot;</span>
+
+<span class="c1"># Network information</span>
+<span class="n">ip_address</span><span class="o">=</span><span class="s2">&quot;192.168.1.100&quot;</span>
+<span class="n">user_agent</span><span class="o">=</span><span class="s2">&quot;Mozilla/5.0...&quot;</span>
+<span class="n">remote_addr</span><span class="o">=</span><span class="s2">&quot;10.0.0.1&quot;</span>
+
+<span class="c1"># Performance metrics</span>
+<span class="n">duration_ms</span><span class="o">=</span><span class="mi">150</span>
+<span class="n">response_time_ms</span><span class="o">=</span><span class="mi">250</span>
+<span class="n">query_time_ms</span><span class="o">=</span><span class="mi">45</span>
+<span class="n">processing_time_ms</span><span class="o">=</span><span class="mi">100</span>
+
+<span class="c1"># Business entities</span>
+<span class="n">order_id</span><span class="o">=</span><span class="s2">&quot;ORD-12345&quot;</span>
+<span class="n">transaction_id</span><span class="o">=</span><span class="s2">&quot;txn-67890&quot;</span>
+<span class="n">customer_id</span><span class="o">=</span><span class="mi">789</span>
+<span class="n">product_id</span><span class="o">=</span><span class="s2">&quot;PROD-456&quot;</span>
+
+<span class="c1"># Error information</span>
+<span class="n">error_code</span><span class="o">=</span><span class="s2">&quot;PAYMENT_FAILED&quot;</span>
+<span class="n">error_type</span><span class="o">=</span><span class="s2">&quot;ValidationError&quot;</span>
+<span class="n">error_message</span><span class="o">=</span><span class="s2">&quot;Invalid credit card&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="units-in-field-names">
+<h3>Units in Field Names<a class="headerlink" href="#units-in-field-names" title="Link to this heading">#</a></h3>
+<p>Always include units in field names:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Good: Units are clear</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;API response&quot;</span><span class="p">,</span>
+           <span class="n">response_time_ms</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span>      <span class="c1"># milliseconds</span>
+           <span class="n">response_size_bytes</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span>  <span class="c1"># bytes</span>
+           <span class="n">cache_ttl_seconds</span><span class="o">=</span><span class="mi">3600</span><span class="p">)</span>    <span class="c1"># seconds</span>
+
+<span class="c1"># Avoid: Ambiguous units</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;API response&quot;</span><span class="p">,</span>
+           <span class="n">response_time</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span>    <span class="c1"># ms? seconds?</span>
+           <span class="n">response_size</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span>   <span class="c1"># bytes? KB?</span>
+           <span class="n">cache_ttl</span><span class="o">=</span><span class="mi">3600</span><span class="p">)</span>       <span class="c1"># seconds? minutes?</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="structured-logging-patterns">
+<h2>Structured Logging Patterns<a class="headerlink" href="#structured-logging-patterns" title="Link to this heading">#</a></h2>
+<section id="event-based-logging">
+<h3>Event-Based Logging<a class="headerlink" href="#event-based-logging" title="Link to this heading">#</a></h3>
+<p>Structure logs around business events:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># User events</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;user.login&quot;</span><span class="p">,</span>
+           <span class="n">user_id</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span>
+           <span class="n">login_method</span><span class="o">=</span><span class="s2">&quot;password&quot;</span><span class="p">,</span>
+           <span class="n">success</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;user.logout&quot;</span><span class="p">,</span>
+           <span class="n">user_id</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span>
+           <span class="n">session_duration_minutes</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+
+<span class="c1"># Order events</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;order.created&quot;</span><span class="p">,</span>
+           <span class="n">order_id</span><span class="o">=</span><span class="s2">&quot;ORD-123&quot;</span><span class="p">,</span>
+           <span class="n">customer_id</span><span class="o">=</span><span class="mi">456</span><span class="p">,</span>
+           <span class="n">total_amount</span><span class="o">=</span><span class="mf">99.99</span><span class="p">)</span>
+
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;order.payment_processed&quot;</span><span class="p">,</span>
+           <span class="n">order_id</span><span class="o">=</span><span class="s2">&quot;ORD-123&quot;</span><span class="p">,</span>
+           <span class="n">payment_method</span><span class="o">=</span><span class="s2">&quot;credit_card&quot;</span><span class="p">,</span>
+           <span class="n">amount</span><span class="o">=</span><span class="mf">99.99</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="state-transitions">
+<h3>State Transitions<a class="headerlink" href="#state-transitions" title="Link to this heading">#</a></h3>
+<p>Log important state changes:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">process_order</span><span class="p">(</span><span class="n">order_id</span><span class="p">):</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;order.state_changed&quot;</span><span class="p">,</span>
+               <span class="n">order_id</span><span class="o">=</span><span class="n">order_id</span><span class="p">,</span>
+               <span class="n">from_state</span><span class="o">=</span><span class="s2">&quot;pending&quot;</span><span class="p">,</span>
+               <span class="n">to_state</span><span class="o">=</span><span class="s2">&quot;processing&quot;</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Process order</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;order.state_changed&quot;</span><span class="p">,</span>
+                   <span class="n">order_id</span><span class="o">=</span><span class="n">order_id</span><span class="p">,</span>
+                   <span class="n">from_state</span><span class="o">=</span><span class="s2">&quot;processing&quot;</span><span class="p">,</span>
+                   <span class="n">to_state</span><span class="o">=</span><span class="s2">&quot;completed&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;order.state_changed&quot;</span><span class="p">,</span>
+                    <span class="n">order_id</span><span class="o">=</span><span class="n">order_id</span><span class="p">,</span>
+                    <span class="n">from_state</span><span class="o">=</span><span class="s2">&quot;processing&quot;</span><span class="p">,</span>
+                    <span class="n">to_state</span><span class="o">=</span><span class="s2">&quot;failed&quot;</span><span class="p">,</span>
+                    <span class="n">error_reason</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="performance-monitoring">
+<h3>Performance Monitoring<a class="headerlink" href="#performance-monitoring" title="Link to this heading">#</a></h3>
+<p>Log performance metrics consistently:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">contextlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">contextmanager</span>
+
+<span class="nd">@contextmanager</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">timed_operation</span><span class="p">(</span><span class="n">operation_name</span><span class="p">,</span> <span class="o">**</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">operation_name</span><span class="si">}</span><span class="s2">.started&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">context</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">yield</span>
+        <span class="n">duration_ms</span> <span class="o">=</span> <span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">operation_name</span><span class="si">}</span><span class="s2">.completed&quot;</span><span class="p">,</span>
+                   <span class="n">duration_ms</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">duration_ms</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+                   <span class="o">**</span><span class="n">context</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">duration_ms</span> <span class="o">=</span> <span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">operation_name</span><span class="si">}</span><span class="s2">.failed&quot;</span><span class="p">,</span>
+                    <span class="n">duration_ms</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">duration_ms</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+                    <span class="n">error_type</span><span class="o">=</span><span class="nb">type</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                    <span class="n">error_message</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">),</span>
+                    <span class="o">**</span><span class="n">context</span><span class="p">)</span>
+        <span class="k">raise</span>
+
+<span class="c1"># Usage</span>
+<span class="k">with</span> <span class="n">timed_operation</span><span class="p">(</span><span class="s2">&quot;database.query&quot;</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="s2">&quot;users&quot;</span><span class="p">,</span> <span class="n">query_type</span><span class="o">=</span><span class="s2">&quot;SELECT&quot;</span><span class="p">):</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM users WHERE active = true&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="error-handling-patterns">
+<h2>Error Handling Patterns<a class="headerlink" href="#error-handling-patterns" title="Link to this heading">#</a></h2>
+<section id="structured-error-logging">
+<h3>Structured Error Logging<a class="headerlink" href="#structured-error-logging" title="Link to this heading">#</a></h3>
+<p>Always include relevant context in error logs:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">process_payment</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">amount</span><span class="p">,</span> <span class="n">payment_method</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Payment processing logic</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">payment_gateway</span><span class="o">.</span><span class="n">charge</span><span class="p">(</span><span class="n">amount</span><span class="p">,</span> <span class="n">payment_method</span><span class="p">)</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;payment.successful&quot;</span><span class="p">,</span>
+                   <span class="n">user_id</span><span class="o">=</span><span class="n">user_id</span><span class="p">,</span>
+                   <span class="n">amount</span><span class="o">=</span><span class="n">amount</span><span class="p">,</span>
+                   <span class="n">payment_method</span><span class="o">=</span><span class="n">payment_method</span><span class="p">,</span>
+                   <span class="n">transaction_id</span><span class="o">=</span><span class="n">result</span><span class="o">.</span><span class="n">transaction_id</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="n">PaymentDeclinedError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;payment.declined&quot;</span><span class="p">,</span>
+                      <span class="n">user_id</span><span class="o">=</span><span class="n">user_id</span><span class="p">,</span>
+                      <span class="n">amount</span><span class="o">=</span><span class="n">amount</span><span class="p">,</span>
+                      <span class="n">payment_method</span><span class="o">=</span><span class="n">payment_method</span><span class="p">,</span>
+                      <span class="n">decline_reason</span><span class="o">=</span><span class="n">e</span><span class="o">.</span><span class="n">reason</span><span class="p">,</span>
+                      <span class="n">decline_code</span><span class="o">=</span><span class="n">e</span><span class="o">.</span><span class="n">code</span><span class="p">)</span>
+        <span class="k">raise</span>
+
+    <span class="k">except</span> <span class="n">PaymentGatewayError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;payment.gateway_error&quot;</span><span class="p">,</span>
+                    <span class="n">exc_info</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                    <span class="n">user_id</span><span class="o">=</span><span class="n">user_id</span><span class="p">,</span>
+                    <span class="n">amount</span><span class="o">=</span><span class="n">amount</span><span class="p">,</span>
+                    <span class="n">payment_method</span><span class="o">=</span><span class="n">payment_method</span><span class="p">,</span>
+                    <span class="n">gateway_error_code</span><span class="o">=</span><span class="n">e</span><span class="o">.</span><span class="n">error_code</span><span class="p">,</span>
+                    <span class="n">gateway_message</span><span class="o">=</span><span class="n">e</span><span class="o">.</span><span class="n">message</span><span class="p">,</span>
+                    <span class="n">retry_count</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="s1">&#39;retry_count&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="k">raise</span>
+
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span><span class="s2">&quot;payment.unexpected_error&quot;</span><span class="p">,</span>
+                       <span class="n">exc_info</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                       <span class="n">user_id</span><span class="o">=</span><span class="n">user_id</span><span class="p">,</span>
+                       <span class="n">amount</span><span class="o">=</span><span class="n">amount</span><span class="p">,</span>
+                       <span class="n">payment_method</span><span class="o">=</span><span class="n">payment_method</span><span class="p">,</span>
+                       <span class="n">error_type</span><span class="o">=</span><span class="nb">type</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="k">raise</span>
+</pre></div>
+</div>
+</section>
+<section id="error-classification">
+<h3>Error Classification<a class="headerlink" href="#error-classification" title="Link to this heading">#</a></h3>
+<p>Use consistent error classification:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Client errors (4xx equivalent)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;validation.failed&quot;</span><span class="p">,</span>
+              <span class="n">field</span><span class="o">=</span><span class="s2">&quot;email&quot;</span><span class="p">,</span>
+              <span class="n">value</span><span class="o">=</span><span class="s2">&quot;invalid-email&quot;</span><span class="p">,</span>
+              <span class="n">error_type</span><span class="o">=</span><span class="s2">&quot;client_error&quot;</span><span class="p">)</span>
+
+<span class="c1"># Server errors (5xx equivalent)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;database.connection_failed&quot;</span><span class="p">,</span>
+            <span class="n">host</span><span class="o">=</span><span class="s2">&quot;db.example.com&quot;</span><span class="p">,</span>
+            <span class="n">error_type</span><span class="o">=</span><span class="s2">&quot;server_error&quot;</span><span class="p">)</span>
+
+<span class="c1"># Business logic errors</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;business_rule.violated&quot;</span><span class="p">,</span>
+           <span class="n">rule</span><span class="o">=</span><span class="s2">&quot;max_daily_transactions&quot;</span><span class="p">,</span>
+           <span class="n">user_id</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span>
+           <span class="n">current_count</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+           <span class="n">limit</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+           <span class="n">error_type</span><span class="o">=</span><span class="s2">&quot;business_error&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="context-management-best-practices">
+<h2>Context Management Best Practices<a class="headerlink" href="#context-management-best-practices" title="Link to this heading">#</a></h2>
+<section id="web-application-context">
+<h3>Web Application Context<a class="headerlink" href="#web-application-context" title="Link to this heading">#</a></h3>
+<p>Set up comprehensive request context:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">setup_request_context</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Set up logging context for web requests&quot;&quot;&quot;</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;request_id&#39;</span><span class="p">:</span> <span class="n">generate_request_id</span><span class="p">(),</span>
+        <span class="s1">&#39;method&#39;</span><span class="p">:</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="p">,</span>
+        <span class="s1">&#39;path&#39;</span><span class="p">:</span> <span class="n">request</span><span class="o">.</span><span class="n">path</span><span class="p">,</span>
+        <span class="s1">&#39;ip_address&#39;</span><span class="p">:</span> <span class="n">get_client_ip</span><span class="p">(</span><span class="n">request</span><span class="p">),</span>
+        <span class="s1">&#39;user_agent&#39;</span><span class="p">:</span> <span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;User-Agent&#39;</span><span class="p">,</span> <span class="s1">&#39;Unknown&#39;</span><span class="p">)[:</span><span class="mi">200</span><span class="p">]</span>  <span class="c1"># Truncate long user agents</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Add user context if authenticated</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;user&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">:</span>
+        <span class="n">context</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+            <span class="s1">&#39;user_id&#39;</span><span class="p">:</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="s1">&#39;username&#39;</span><span class="p">:</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="p">,</span>
+            <span class="s1">&#39;user_role&#39;</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">,</span> <span class="s1">&#39;role&#39;</span><span class="p">,</span> <span class="s1">&#39;user&#39;</span><span class="p">)</span>
+        <span class="p">})</span>
+
+    <span class="c1"># Add API version if available</span>
+    <span class="k">if</span> <span class="s1">&#39;X-API-Version&#39;</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="p">:</span>
+        <span class="n">context</span><span class="p">[</span><span class="s1">&#39;api_version&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;X-API-Version&#39;</span><span class="p">]</span>
+
+    <span class="n">logstructor</span><span class="o">.</span><span class="n">bind_context</span><span class="p">(</span><span class="o">**</span><span class="n">context</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="background-task-context">
+<h3>Background Task Context<a class="headerlink" href="#background-task-context" title="Link to this heading">#</a></h3>
+<p>For background tasks, preserve relevant context:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">enqueue_background_task</span><span class="p">(</span><span class="n">task_func</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Enqueue background task with current context&quot;&quot;&quot;</span>
+    <span class="n">current_context</span> <span class="o">=</span> <span class="n">logstructor</span><span class="o">.</span><span class="n">get_context</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">wrapped_task</span><span class="p">():</span>
+        <span class="c1"># Restore context in background thread</span>
+        <span class="n">logstructor</span><span class="o">.</span><span class="n">bind_context</span><span class="p">(</span><span class="o">**</span><span class="n">current_context</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;background_task.started&quot;</span><span class="p">,</span>
+                       <span class="n">task_name</span><span class="o">=</span><span class="n">task_func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">task_func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;background_task.completed&quot;</span><span class="p">,</span>
+                       <span class="n">task_name</span><span class="o">=</span><span class="n">task_func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">result</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;background_task.failed&quot;</span><span class="p">,</span>
+                        <span class="n">task_name</span><span class="o">=</span><span class="n">task_func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                        <span class="n">error_type</span><span class="o">=</span><span class="nb">type</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                        <span class="n">error_message</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+            <span class="k">raise</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="n">logstructor</span><span class="o">.</span><span class="n">clear_context</span><span class="p">()</span>
+
+    <span class="c1"># Queue the wrapped task</span>
+    <span class="n">task_queue</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="n">wrapped_task</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="async-context-management">
+<h3>Async Context Management<a class="headerlink" href="#async-context-management" title="Link to this heading">#</a></h3>
+<p>For async applications, context is automatically preserved:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">handle_async_request</span><span class="p">():</span>
+    <span class="n">logstructor</span><span class="o">.</span><span class="n">bind_context</span><span class="p">(</span><span class="n">request_id</span><span class="o">=</span><span class="s2">&quot;req-123&quot;</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">await</span> <span class="n">authenticate_user</span><span class="p">()</span>  <span class="c1"># Context preserved across await</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;User authenticated&quot;</span><span class="p">)</span>
+
+        <span class="k">await</span> <span class="n">process_data</span><span class="p">()</span>       <span class="c1"># Still has request_id</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Processing complete&quot;</span><span class="p">)</span>
+
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">logstructor</span><span class="o">.</span><span class="n">clear_context</span><span class="p">()</span>
+
+<span class="c1"># Context is isolated between concurrent tasks</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="n">tasks</span> <span class="o">=</span> <span class="p">[</span><span class="n">handle_async_request</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
+    <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="o">*</span><span class="n">tasks</span><span class="p">)</span>  <span class="c1"># Each task has its own context</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="performance-optimization">
+<h2>Performance Optimization<a class="headerlink" href="#performance-optimization" title="Link to this heading">#</a></h2>
+<section id="lazy-evaluation">
+<h3>Lazy Evaluation<a class="headerlink" href="#lazy-evaluation" title="Link to this heading">#</a></h3>
+<p>Use lazy evaluation for expensive operations:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Bad: Always calculates, even if debug is disabled</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;User data&quot;</span><span class="p">,</span> <span class="n">user_data</span><span class="o">=</span><span class="n">expensive_user_calculation</span><span class="p">())</span>
+
+<span class="c1"># Good: Only calculate if debug logging is enabled</span>
+<span class="k">if</span> <span class="n">logger</span><span class="o">.</span><span class="n">isEnabledFor</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">):</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;User data&quot;</span><span class="p">,</span> <span class="n">user_data</span><span class="o">=</span><span class="n">expensive_user_calculation</span><span class="p">())</span>
+
+<span class="c1"># Even better: Use a lambda for truly lazy evaluation</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">log_debug_data</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">logger</span><span class="o">.</span><span class="n">isEnabledFor</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">):</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;User data&quot;</span><span class="p">,</span> <span class="n">user_data</span><span class="o">=</span><span class="n">expensive_user_calculation</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+<section id="efficient-data-extraction">
+<h3>Efficient Data Extraction<a class="headerlink" href="#efficient-data-extraction" title="Link to this heading">#</a></h3>
+<p>Extract only what you need for logging:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Bad: Serializing entire complex object</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;User updated&quot;</span><span class="p">,</span> <span class="n">user_object</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
+
+<span class="c1"># Good: Extract specific fields</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;User updated&quot;</span><span class="p">,</span>
+           <span class="n">user_id</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+           <span class="n">username</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="p">,</span>
+           <span class="n">email</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="p">,</span>
+           <span class="n">last_login</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">last_login</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span> <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">last_login</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="batch-context-updates">
+<h3>Batch Context Updates<a class="headerlink" href="#batch-context-updates" title="Link to this heading">#</a></h3>
+<p>Set context once, not repeatedly:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Bad: Setting context multiple times</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
+    <span class="n">logstructor</span><span class="o">.</span><span class="n">bind_context</span><span class="p">(</span><span class="n">item_id</span><span class="o">=</span><span class="n">item</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Processing item&quot;</span><span class="p">)</span>
+    <span class="n">logstructor</span><span class="o">.</span><span class="n">clear_context</span><span class="p">()</span>
+
+<span class="c1"># Good: Process in batches or use different approach</span>
+<span class="n">logstructor</span><span class="o">.</span><span class="n">bind_context</span><span class="p">(</span><span class="n">batch_id</span><span class="o">=</span><span class="s2">&quot;batch-123&quot;</span><span class="p">,</span> <span class="n">total_items</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">items</span><span class="p">):</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Processing item&quot;</span><span class="p">,</span>
+               <span class="n">item_id</span><span class="o">=</span><span class="n">item</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+               <span class="n">item_index</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
+<span class="n">logstructor</span><span class="o">.</span><span class="n">clear_context</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="production-deployment">
+<h2>Production Deployment<a class="headerlink" href="#production-deployment" title="Link to this heading">#</a></h2>
+<section id="log-level-configuration">
+<h3>Log Level Configuration<a class="headerlink" href="#log-level-configuration" title="Link to this heading">#</a></h3>
+<p>Use appropriate log levels in production:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Development</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+
+<span class="c1"># Staging</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+
+<span class="c1"># Production</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span><span class="p">)</span>
+
+<span class="c1"># Critical systems</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">ERROR</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="sensitive-data-handling">
+<h3>Sensitive Data Handling<a class="headerlink" href="#sensitive-data-handling" title="Link to this heading">#</a></h3>
+<p>Never log sensitive information:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Bad: Logging sensitive data</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;User login&quot;</span><span class="p">,</span>
+           <span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span>
+           <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">)</span>  <span class="c1"># Never log passwords!</span>
+
+<span class="c1"># Good: Log safely</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;User login&quot;</span><span class="p">,</span>
+           <span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span>
+           <span class="n">password_length</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">password</span><span class="p">),</span>
+           <span class="n">has_special_chars</span><span class="o">=</span><span class="nb">any</span><span class="p">(</span><span class="n">c</span> <span class="ow">in</span> <span class="n">password</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="s2">&quot;!@#$%&quot;</span><span class="p">))</span>
+
+<span class="c1"># For debugging, use hashed values</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
+<span class="n">password_hash</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">password</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()[:</span><span class="mi">8</span><span class="p">]</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Login attempt&quot;</span><span class="p">,</span>
+            <span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span>
+            <span class="n">password_hash</span><span class="o">=</span><span class="n">password_hash</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="data-sanitization">
+<h3>Data Sanitization<a class="headerlink" href="#data-sanitization" title="Link to this heading">#</a></h3>
+<p>Sanitize user input in logs:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">sanitize_for_logging</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Sanitize user input for safe logging&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="c1"># Convert to string and truncate</span>
+    <span class="n">str_value</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)[:</span><span class="n">max_length</span><span class="p">]</span>
+
+    <span class="c1"># Remove potentially dangerous characters</span>
+    <span class="n">safe_value</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">str_value</span> <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">isprintable</span><span class="p">())</span>
+
+    <span class="k">return</span> <span class="n">safe_value</span>
+
+<span class="c1"># Usage</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;User input received&quot;</span><span class="p">,</span>
+           <span class="n">user_input</span><span class="o">=</span><span class="n">sanitize_for_logging</span><span class="p">(</span><span class="n">user_input</span><span class="p">),</span>
+           <span class="n">input_length</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">user_input</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="monitoring-and-alerting">
+<h2>Monitoring and Alerting<a class="headerlink" href="#monitoring-and-alerting" title="Link to this heading">#</a></h2>
+<section id="health-check-logging">
+<h3>Health Check Logging<a class="headerlink" href="#health-check-logging" title="Link to this heading">#</a></h3>
+<p>Log application health metrics:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">log_health_metrics</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Log application health metrics&quot;&quot;&quot;</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">psutil</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">gc</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;health.metrics&quot;</span><span class="p">,</span>
+               <span class="n">cpu_percent</span><span class="o">=</span><span class="n">psutil</span><span class="o">.</span><span class="n">cpu_percent</span><span class="p">(),</span>
+               <span class="n">memory_percent</span><span class="o">=</span><span class="n">psutil</span><span class="o">.</span><span class="n">virtual_memory</span><span class="p">()</span><span class="o">.</span><span class="n">percent</span><span class="p">,</span>
+               <span class="n">disk_usage_percent</span><span class="o">=</span><span class="n">psutil</span><span class="o">.</span><span class="n">disk_usage</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">percent</span><span class="p">,</span>
+               <span class="n">active_connections</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">psutil</span><span class="o">.</span><span class="n">net_connections</span><span class="p">()),</span>
+               <span class="n">gc_collections</span><span class="o">=</span><span class="nb">sum</span><span class="p">(</span><span class="n">gc</span><span class="o">.</span><span class="n">get_stats</span><span class="p">(),</span> <span class="p">[])</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;collections&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+
+<span class="c1"># Call periodically</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">threading</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">health_monitor</span><span class="p">():</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">log_health_metrics</span><span class="p">()</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>  <span class="c1"># Every minute</span>
+
+<span class="n">health_thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">health_monitor</span><span class="p">,</span> <span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">health_thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="business-metrics">
+<h3>Business Metrics<a class="headerlink" href="#business-metrics" title="Link to this heading">#</a></h3>
+<p>Log business-relevant metrics:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">log_business_metrics</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Log business metrics for monitoring&quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;business.metrics&quot;</span><span class="p">,</span>
+               <span class="n">active_users_count</span><span class="o">=</span><span class="n">get_active_users_count</span><span class="p">(),</span>
+               <span class="n">orders_today</span><span class="o">=</span><span class="n">get_orders_count_today</span><span class="p">(),</span>
+               <span class="n">revenue_today</span><span class="o">=</span><span class="n">get_revenue_today</span><span class="p">(),</span>
+               <span class="n">error_rate_percent</span><span class="o">=</span><span class="n">get_error_rate_last_hour</span><span class="p">(),</span>
+               <span class="n">avg_response_time_ms</span><span class="o">=</span><span class="n">get_avg_response_time</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+<section id="alert-worthy-events">
+<h3>Alert-Worthy Events<a class="headerlink" href="#alert-worthy-events" title="Link to this heading">#</a></h3>
+<p>Structure logs for easy alerting:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># High-priority alerts</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span><span class="s2">&quot;system.critical_error&quot;</span><span class="p">,</span>
+                <span class="n">error_type</span><span class="o">=</span><span class="s2">&quot;database_unavailable&quot;</span><span class="p">,</span>
+                <span class="n">affected_users</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">,</span>
+                <span class="n">estimated_downtime_minutes</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Medium-priority alerts</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;business.threshold_exceeded&quot;</span><span class="p">,</span>
+            <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;error_rate&quot;</span><span class="p">,</span>
+            <span class="n">current_value</span><span class="o">=</span><span class="mf">15.5</span><span class="p">,</span>
+            <span class="n">threshold</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span>
+            <span class="n">time_window_minutes</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Low-priority alerts</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;system.resource_warning&quot;</span><span class="p">,</span>
+              <span class="n">resource</span><span class="o">=</span><span class="s2">&quot;memory&quot;</span><span class="p">,</span>
+              <span class="n">current_usage_percent</span><span class="o">=</span><span class="mi">85</span><span class="p">,</span>
+              <span class="n">threshold_percent</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="testing-structured-logs">
+<h2>Testing Structured Logs<a class="headerlink" href="#testing-structured-logs" title="Link to this heading">#</a></h2>
+<section id="log-testing-utilities">
+<h3>Log Testing Utilities<a class="headerlink" href="#log-testing-utilities" title="Link to this heading">#</a></h3>
+<p>Create utilities for testing log output:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">io</span><span class="w"> </span><span class="kn">import</span> <span class="n">StringIO</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">LogCapture</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Utility for capturing and testing log output&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stream</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">handler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stream</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">logstructor</span><span class="o">.</span><span class="n">StructFormatter</span><span class="p">())</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">logger</span> <span class="o">=</span> <span class="n">logstructor</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">handler</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_val</span><span class="p">,</span> <span class="n">exc_tb</span><span class="p">):</span>
+        <span class="n">logger</span> <span class="o">=</span> <span class="n">logstructor</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">removeHandler</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">handler</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_logs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get all captured logs as parsed JSON objects&quot;&quot;&quot;</span>
+        <span class="n">logs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">stream</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">line</span><span class="p">:</span>
+                <span class="n">logs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">line</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">logs</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">assert_log_contains</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="o">**</span><span class="n">expected_context</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Assert that a log entry exists with expected content&quot;&quot;&quot;</span>
+        <span class="n">logs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_logs</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">log</span> <span class="ow">in</span> <span class="n">logs</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">log</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;level&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="n">level</span> <span class="ow">and</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="n">message</span><span class="p">):</span>
+
+                <span class="c1"># Check context fields</span>
+                <span class="n">context</span> <span class="o">=</span> <span class="n">log</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;context&#39;</span><span class="p">,</span> <span class="p">{})</span>
+                <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">expected_context</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="k">if</span> <span class="n">context</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">!=</span> <span class="n">value</span><span class="p">:</span>
+                        <span class="k">break</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="kc">True</span>
+
+        <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected log not found: </span><span class="si">{</span><span class="n">level</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">expected_context</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Usage in tests</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_user_login_logging</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">LogCapture</span><span class="p">()</span> <span class="k">as</span> <span class="n">capture</span><span class="p">:</span>
+        <span class="n">logger</span> <span class="o">=</span> <span class="n">logstructor</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;User logged in&quot;</span><span class="p">,</span> <span class="n">user_id</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;password&quot;</span><span class="p">)</span>
+
+        <span class="n">capture</span><span class="o">.</span><span class="n">assert_log_contains</span><span class="p">(</span><span class="s2">&quot;INFO&quot;</span><span class="p">,</span> <span class="s2">&quot;User logged in&quot;</span><span class="p">,</span>
+                                   <span class="n">user_id</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;password&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="integration-testing">
+<h3>Integration Testing<a class="headerlink" href="#integration-testing" title="Link to this heading">#</a></h3>
+<p>Test log output in integration tests:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_api_request_logging</span><span class="p">(</span><span class="n">client</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test that API requests are properly logged&quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="n">LogCapture</span><span class="p">()</span> <span class="k">as</span> <span class="n">capture</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/api/users/123&#39;</span><span class="p">)</span>
+
+        <span class="n">logs</span> <span class="o">=</span> <span class="n">capture</span><span class="o">.</span><span class="n">get_logs</span><span class="p">()</span>
+
+        <span class="c1"># Check request started log</span>
+        <span class="n">request_logs</span> <span class="o">=</span> <span class="p">[</span><span class="n">log</span> <span class="k">for</span> <span class="n">log</span> <span class="ow">in</span> <span class="n">logs</span> <span class="k">if</span> <span class="s2">&quot;Request started&quot;</span> <span class="ow">in</span> <span class="n">log</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)]</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">request_logs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+        <span class="k">assert</span> <span class="n">request_logs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;context&#39;</span><span class="p">][</span><span class="s1">&#39;method&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;GET&#39;</span>
+        <span class="k">assert</span> <span class="n">request_logs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;context&#39;</span><span class="p">][</span><span class="s1">&#39;path&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;/api/users/123&#39;</span>
+
+        <span class="c1"># Check request completed log</span>
+        <span class="n">completion_logs</span> <span class="o">=</span> <span class="p">[</span><span class="n">log</span> <span class="k">for</span> <span class="n">log</span> <span class="ow">in</span> <span class="n">logs</span> <span class="k">if</span> <span class="s2">&quot;Request completed&quot;</span> <span class="ow">in</span> <span class="n">log</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)]</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">completion_logs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+        <span class="k">assert</span> <span class="n">completion_logs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;context&#39;</span><span class="p">][</span><span class="s1">&#39;status_code&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">200</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="common-anti-patterns">
+<h2>Common Anti-Patterns<a class="headerlink" href="#common-anti-patterns" title="Link to this heading">#</a></h2>
+<section id="avoid-these-mistakes">
+<h3>Avoid These Mistakes<a class="headerlink" href="#avoid-these-mistakes" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ❌ Don&#39;t log sensitive data</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;User login&quot;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">,</span> <span class="n">credit_card</span><span class="o">=</span><span class="n">card_number</span><span class="p">)</span>
+
+<span class="c1"># ❌ Don&#39;t use inconsistent field names</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Event&quot;</span><span class="p">,</span> <span class="n">userId</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>  <span class="c1"># camelCase</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Event&quot;</span><span class="p">,</span> <span class="n">user_id</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>  <span class="c1"># snake_case (pick one!)</span>
+
+<span class="c1"># ❌ Don&#39;t forget to clear context</span>
+<span class="n">logstructor</span><span class="o">.</span><span class="n">bind_context</span><span class="p">(</span><span class="n">request_id</span><span class="o">=</span><span class="s2">&quot;req-123&quot;</span><span class="p">)</span>
+<span class="c1"># ... process request ...</span>
+<span class="c1"># Context never cleared - memory leak!</span>
+
+<span class="c1"># ❌ Don&#39;t log complex objects directly</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;User data&quot;</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">complex_user_object</span><span class="p">)</span>  <span class="c1"># Hard to search</span>
+
+<span class="c1"># ❌ Don&#39;t use vague messages</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Something happened&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">some_data</span><span class="p">)</span>  <span class="c1"># Not helpful</span>
+
+<span class="c1"># ❌ Don&#39;t ignore performance</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Debug info&quot;</span><span class="p">,</span> <span class="n">expensive_data</span><span class="o">=</span><span class="n">slow_calculation</span><span class="p">())</span>  <span class="c1"># Always calculated</span>
+</pre></div>
+</div>
+</section>
+<section id="better-alternatives">
+<h3>Better Alternatives<a class="headerlink" href="#better-alternatives" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ✅ Log safely</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;User login&quot;</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span> <span class="n">login_successful</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># ✅ Use consistent naming</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Event&quot;</span><span class="p">,</span> <span class="n">user_id</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>  <span class="c1"># Always snake_case</span>
+
+<span class="c1"># ✅ Always clear context</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">logstructor</span><span class="o">.</span><span class="n">bind_context</span><span class="p">(</span><span class="n">request_id</span><span class="o">=</span><span class="s2">&quot;req-123&quot;</span><span class="p">)</span>
+    <span class="c1"># ... process request ...</span>
+<span class="k">finally</span><span class="p">:</span>
+    <span class="n">logstructor</span><span class="o">.</span><span class="n">clear_context</span><span class="p">()</span>
+
+<span class="c1"># ✅ Extract relevant fields</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;User data&quot;</span><span class="p">,</span> <span class="n">user_id</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="p">)</span>
+
+<span class="c1"># ✅ Use descriptive messages</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;User authentication successful&quot;</span><span class="p">,</span> <span class="n">user_id</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;password&quot;</span><span class="p">)</span>
+
+<span class="c1"># ✅ Use lazy evaluation</span>
+<span class="k">if</span> <span class="n">logger</span><span class="o">.</span><span class="n">isEnabledFor</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">):</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Debug info&quot;</span><span class="p">,</span> <span class="n">expensive_data</span><span class="o">=</span><span class="n">slow_calculation</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="context-management.html"><span class="doc">Context Management</span></a> - Advanced context management</p></li>
+<li><p><a class="reference internal" href="json-formatting.html"><span class="doc">JSON Formatting</span></a> - JSON formatting configuration</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="context-management.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Context Management</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#field-naming-conventions">Field Naming Conventions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-consistent-field-names">Use Consistent Field Names</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-field-names">Standard Field Names</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#units-in-field-names">Units in Field Names</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#structured-logging-patterns">Structured Logging Patterns</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#event-based-logging">Event-Based Logging</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#state-transitions">State Transitions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-monitoring">Performance Monitoring</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-handling-patterns">Error Handling Patterns</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#structured-error-logging">Structured Error Logging</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#error-classification">Error Classification</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#context-management-best-practices">Context Management Best Practices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#web-application-context">Web Application Context</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#background-task-context">Background Task Context</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#async-context-management">Async Context Management</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-optimization">Performance Optimization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lazy-evaluation">Lazy Evaluation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#efficient-data-extraction">Efficient Data Extraction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#batch-context-updates">Batch Context Updates</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#production-deployment">Production Deployment</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#log-level-configuration">Log Level Configuration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sensitive-data-handling">Sensitive Data Handling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-sanitization">Data Sanitization</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monitoring-and-alerting">Monitoring and Alerting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#health-check-logging">Health Check Logging</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#business-metrics">Business Metrics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alert-worthy-events">Alert-Worthy Events</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-structured-logs">Testing Structured Logs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#log-testing-utilities">Log Testing Utilities</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integration-testing">Integration Testing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-anti-patterns">Common Anti-Patterns</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#avoid-these-mistakes">Avoid These Mistakes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#better-alternatives">Better Alternatives</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Marcel Kennert
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, Marcel Kennert.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
