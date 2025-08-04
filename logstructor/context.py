@@ -13,9 +13,7 @@ import contextvars
 from typing import Any, Dict
 
 # Context variable for storing logging context data
-_context_data: contextvars.ContextVar[Dict[str, Any]] = contextvars.ContextVar(
-    'logging_context', default={}
-)
+_context_data: contextvars.ContextVar[Dict[str, Any]] = contextvars.ContextVar("logging_context", default={})
 
 
 def bind_context(**kwargs) -> None:
