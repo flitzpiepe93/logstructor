@@ -17,21 +17,17 @@ Try finding anything in this mess:
 2025-01-08 10:32:01 INFO: Order ORD-789 completed successfully
 ```
 
-**Questions you can't answer:**
+Now ask yourself: Which user experienced the database timeout? How many failed logins did alice have today? Which orders failed due to timeouts?
 
-- Which user had the database timeout?
-- How many failed logins did alice have today?
-- What orders failed due to timeouts?
+With unstructured text logs, you can't easily answer any of these questions. You can’t search, filter, or analyze them in a meaningful way.
 
-**You can't search, filter, or analyze unstructured text logs.**
-
-## The Solution: 3 Lines of Code
+## The Solution: Few Lines of Code
 
 ```python
 import logstructor
 
 logger = logstructor.getLogger(__name__)
-logger.info("Login failed", user_id="alice", ip="192.168.1.100", attempt=3, reason="invalid_password")
+logger.info("Login failed", user_id="alice", ip="192.168.1.100", attempt=3)
 ```
 
 **Result:**
@@ -44,8 +40,7 @@ logger.info("Login failed", user_id="alice", ip="192.168.1.100", attempt=3, reas
   "context": {
     "user_id": "alice",
     "ip": "192.168.1.100",
-    "attempt": 3,
-    "reason": "invalid_password"
+    "attempt": 3
   }
 }
 ```
@@ -56,9 +51,6 @@ logger.info("Login failed", user_id="alice", ip="192.168.1.100", attempt=3, reas
 # Find all of alice's actions across all services
 user_id:"alice"
 
-# Find all failed login attempts
-reason:"invalid_password"
-
 # Find users with multiple failed attempts (security alert!)
 attempt:>2
 
@@ -66,18 +58,18 @@ attempt:>2
 user_id:"alice" AND level:"ERROR" AND timestamp:[now-1h TO now]
 ```
 
-**Before:** Grep through gigabytes of text files<br>
-**After:** Instant search and filtering
+**Before:** Grep through gigabytes of text files ❌<br>
+**After:** Instant search and filtering ✅
 
 ## Get Started
 
-Getting started with ``LogStructor`` is as simple as installing the package and using its drop‑in replacement for the standard Python logger.
+Installing and using LogStructor is simple:
 
 ```bash
 pip install logstructor
 ```
 
-With just a few lines of code, you can start producing structured, machine‑readable logs without changing your existing logging workflow:
+Replace the standard logger:
 
 ```python
 import logstructor
@@ -86,7 +78,7 @@ logger = logstructor.getLogger(__name__)
 logger.info("Hello structured world", excited=True)
 ```
 
-And that’s it — your logs are now automatically enriched with context and structured fields, making them up to 10× more useful for debugging, analysis, and monitoring.
+That’s it — structured logs with context, ready for debugging and monitoring.
 
 ## Why Developers Love It
 
@@ -115,6 +107,19 @@ logger.info("Request completed")
 logstructor.clear_context()
 ```
 
+**Works with async/await:**
+
+```python
+async def handle_request():
+    logstructor.bind_context(request_id="req-123")
+    
+    await authenticate_user()  # Context preserved across await
+    logger.info("User authenticated")
+    
+    await process_data()       # Still has request_id
+    logger.info("Processing complete")
+```
+
 ### 3. Drop-in replacement
 
 ```python
@@ -132,6 +137,7 @@ logger.error("Connection failed", host="db.example.com", timeout=30)
 | Feature                  | Benefit                                             |
 | ------------------------ | --------------------------------------------------- |
 | 🔒 **Thread-safe**       | Works perfectly in multi-threaded web apps          |
+| ⚡ **Async-ready**       | Full support for async/await with contextvars      |
 | 📦 **Zero dependencies** | No supply chain attacks, no version conflicts       |
 | ⚡ **High performance**  | Minimal overhead over standard logging              |
 | 🛡️ **Battle-tested**     | Running in production handling millions of requests |
@@ -148,22 +154,6 @@ logger.error("Connection failed", host="db.example.com", timeout=30)
 | **Complexity**       | Minimal - just structured fields | High - processors, contextvars, etc. |
 | **Use case**         | 80% of structured logging needs  | Complex logging architectures        |
 
-### When to choose what:
+---
 
-**Choose LogStructor when:**
-
-- You want structured logging **today** with minimal effort
-- You have existing codebases with standard logging
-- You need zero dependencies (security/compliance)
-- Your team wants to avoid learning new APIs
-- You need simple request context tracking
-
-**Choose structlog when:**
-
-- You're building complex logging pipelines
-- You need advanced processors and transformations
-- You're starting a greenfield project
-- You want maximum flexibility and customization
-- You need advanced contextvars integration
-
-**Migration path:** Many teams start with LogStructor for quick wins, then migrate to structlog when they need advanced features. LogStructor's JSON output is compatible with most log aggregators that also consume structlog output.
+**🚀 Stop fighting your logs. Start using them.**
